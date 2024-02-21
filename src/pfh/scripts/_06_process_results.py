@@ -31,8 +31,13 @@ STUDY_FIRE_YEARS = (
 # Burned, unmasked forest pixels used in analysis
 ANALYSIS_MASK = MAXDIFF.select("SWIR2").mosaic().mask()
 
+# Exclude wilderness and NPS from ownership analysis
+ANALYSIS_OWNERS = {
+    k: v for k, v in OWNER_CLASSES.items() if k not in ["wilderness", "nps"]
+}
+
 OWNERS = ee.ImageCollection([
-    OWNERSHIP.eq(val).set("owner", name) for name, val in OWNER_CLASSES.items()
+    OWNERSHIP.eq(val).set("owner", name) for name, val in ANALYSIS_OWNERS.items()
 ])
 
 
@@ -195,7 +200,7 @@ def export_patch_areas():
 
         patch_areas = calculate_patch_areas(
             harvest_ownership,
-            classes=list(OWNER_CLASSES.values()) if by_owner else [99],
+            classes=list(ANALYSIS_OWNERS.values()) if by_owner else [99],
             geometry=fire.geometry(),
             scale=30,
             crs="EPSG:5070",

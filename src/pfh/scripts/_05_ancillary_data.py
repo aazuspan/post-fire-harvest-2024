@@ -16,6 +16,8 @@ def export_ownership_map() -> None:
     """Export a classified ownership raster based on GAP data."""
     gap = ee.FeatureCollection("USGS/GAP/PAD-US/v20/fee")
     wdpa = ee.FeatureCollection("WCMC/WDPA/current/polygons")
+    # https://catalog.data.gov/dataset/tiger-line-shapefile-2019-nation-u-s-current-tribal-census-tract-national
+    tribal = ee.FeatureCollection("projects/salvage-2023/assets/tribal_ownership")
 
     wilderness = wdpa.filter(ee.Filter.eq("DESIG", "Wilderness"))
     fed = gap.filter(ee.Filter.eq("Mang_Type", "FED"))
@@ -32,6 +34,7 @@ def export_ownership_map() -> None:
             .paint(nps, OWNER_CLASSES["nps"])
             .paint(blm, OWNER_CLASSES["blm"])
             .paint(usfs, OWNER_CLASSES["usfs"])
+            .paint(tribal, OWNER_CLASSES["tribal"])
             # Overwrite USFS with wilderness class
             .paint(wilderness, OWNER_CLASSES["wilderness"])
         )
@@ -45,7 +48,7 @@ def export_ownership_map() -> None:
         # Avoid clipping to the study region to prevent cutting off portions of fires
         image=owner_mask,
         description="ownership_map",
-        assetId=OWNERSHIP_MAP + "_v2",
+        assetId=OWNERSHIP_MAP,
         region=study_region.geometry().bounds(),
         scale=30,
         crs="EPSG:5070",
