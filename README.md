@@ -1,6 +1,6 @@
 # Long-Term Patterns of Post-Fire Harvest Diverge Among Ownerships in the Pacific West
 
-<img src="./figs/method_diagram.png" height=500 alt="Method diagram"></img>
+<img src="./figures/method_diagram.png" height=500 alt="Method diagram"></img>
 
 ## Repository Layout
 
