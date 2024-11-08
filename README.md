@@ -1,5 +1,7 @@
 # Long-term patterns of post-fire harvest diverge among ownerships in the Pacific West, U.S.A.
 
+[![DOI](https://zenodo.org/badge/757098072.svg)](https://doi.org/10.5281/zenodo.14057799)
+
 Code and data for mapping and analysis of post-fire harvest trends in the Pacific West using the Landsat archive in Earth Engine ([Zuspan et al., 2024](https://iopscience.iop.org/article/10.1088/1748-9326/ad8e75)).
 
 <img src="./figures/method_example.png" alt="Method example"></img>
