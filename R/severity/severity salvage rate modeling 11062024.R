@@ -8,7 +8,7 @@ n <- dim(salvage_dat)
 
 TREND_LWD <- 2.25
 TREND_COL <- "white"
-TREND_CEX <- 1.5
+TREND_CEX <- 1.6
 TREND_LTY <- "dotted"
 MARKER_TYPE <- "o"
 ASTERISK_SIZE <- 3.5
@@ -144,7 +144,7 @@ plot(salvage_rate~year, data=salvage[salvage$owner=="Federal",],
 coef(high_rate.fed.gls)
 
 ###add first part 
-points(c(1986,1995), c(coef(high_rate.fed.gls)[1],
+points(c(1986,1996), c(coef(high_rate.fed.gls)[1],
                        coef(high_rate.fed.gls)[1])
        , type="l", col="black", lwd=2, lty=TREND_LTY)
 
@@ -216,7 +216,7 @@ coef(mod_rate.fed.gls)
 
 ###add first part 
 ###add first part 
-points(c(1986,1995), c(coef(mod_rate.fed.gls)[1],
+points(c(1986,1996), c(coef(mod_rate.fed.gls)[1],
                        coef(mod_rate.fed.gls)[1])
        , type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 
@@ -254,7 +254,7 @@ plot(salvage_rate~year, data=salvage[salvage$owner=="Private",],
      pch=21, col=TREND_COL, bg="orange", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.3, cex.main=1.5, ylim=c(0,35), type=MARKER_TYPE, ylab="", xlab="")
 
 ###add first part 
-points(c(1986,1996), c(coef(mod_rate.priv.gls)[1],
+points(c(1986,1997), c(coef(mod_rate.priv.gls)[1],
                        coef(mod_rate.priv.gls)[1])
        , type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 
@@ -295,7 +295,7 @@ plot(salvage_rate~year, data=salvage[salvage$owner=="Federal",],
 coef(low_rate.fed.gls)
 
 ###add first part 
-points(c(1986,1991), c(coef(low_rate.fed.gls)[1],
+points(c(1986,1992), c(coef(low_rate.fed.gls)[1],
                        coef(low_rate.fed.gls)[1])
        , type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 
@@ -332,7 +332,7 @@ salvage<-salvage_dat[salvage_dat$severity=="Low",]
 plot(salvage_rate~year, data=salvage[salvage$owner=="Private",], 
      pch=21, col=TREND_COL, bg="steelblue1", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.3, cex.main=1.5, ylim=c(0,35), type=MARKER_TYPE, ylab="", xlab="")
 ###add first part 
-points(c(1986,1992), c(coef(low_rate.priv.gls)[1],
+points(c(1986,1993), c(coef(low_rate.priv.gls)[1],
                        coef(low_rate.priv.gls)[1])
        , type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 
@@ -373,7 +373,7 @@ plot(salvage_rate~year, data=salvage[salvage$owner=="Federal",],
      pch=21, col=TREND_COL, bg="royalblue3", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.3, cex.main=1.5, ylim=c(0,30), type=MARKER_TYPE, ylab="", xlab="")
 
 ###add first part 
-points(c(1986,1991), c(coef(vlow_rate.fed.gls)[1],
+points(c(1986,1992), c(coef(vlow_rate.fed.gls)[1],
                        coef(vlow_rate.fed.gls)[1])
        , type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 
@@ -413,7 +413,7 @@ plot(salvage_rate~year, data=salvage[salvage$owner=="Private",],
      pch=21, col=TREND_COL, bg="royalblue3", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.3, cex.main=1.5, ylim=c(0,30), type=MARKER_TYPE, ylab="", xlab="")
 
 ###add first part 
-points(c(1986,1994), c(coef(vlow_rate.priv.gls)[1],
+points(c(1986,1995), c(coef(vlow_rate.priv.gls)[1],
                        coef(vlow_rate.priv.gls)[1])
        , type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 

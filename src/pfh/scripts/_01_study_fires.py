@@ -138,14 +138,14 @@ if __name__ == "__main__":
     ee.batch.Export.table.toAsset(
         collection=fires_with_metadata,
         description="candidate_fires",
-        assetId=CANDIDATE_FIRE_COLLECTION + "_managed",
+        assetId=CANDIDATE_FIRE_COLLECTION,
     ).start()
 
     print("Exporting study fires...")
     ee.batch.Export.table.toAsset(
         collection=study_fires,
         description="study_fires",
-        assetId=STUDY_FIRE_COLLECTION + "_managed",
+        assetId=STUDY_FIRE_COLLECTION,
     ).start()
     print(
         "Export started. Check the Tasks tab in the Code Editor to monitor progress."

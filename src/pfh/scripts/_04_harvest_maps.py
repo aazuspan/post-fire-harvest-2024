@@ -28,7 +28,7 @@ if __name__ == "__main__":
     )
     years = harvests.aggregate_array("year").getInfo()
 
-    for year in years[1:]:
+    for year in years:
         asset_id = f"{HARVEST_COLLECTION}/{year}"
         harvest_year = harvests.filter(ee.Filter.eq("year", year)).first().byte()
 

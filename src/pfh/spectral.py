@@ -108,9 +108,7 @@ def get_otsu_threshold(
     histogram = (
         image.select([band])
         .reduceRegion(
-            reducer=ee.Reducer.histogram(255, 2)
-            .combine("mean", None, True)
-            .combine("variance", None, True),
+            reducer=ee.Reducer.histogram(255, 2),
             geometry=region,
             scale=30,
             bestEffort=True,

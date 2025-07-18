@@ -11,6 +11,7 @@ salvage$salvage_rate[salvage$owner=="other"&is.na(salvage$salvage_rate)] <- 0
 
 TREND_LWD <- 2.8
 TREND_COL <- "white"
+TREND_CEX <- 1.8
 TREND_LTY <- "dotted"
 MARKER_TYPE <- "o"
 ASTERISK_SIZE <- 3.5
@@ -168,7 +169,7 @@ sse <- sum(residuals(salvage_area.final.gls)^2)
 ##########make figure with final model
 
 plot(lsalvage_area~year, data=salvage[salvage$owner=="All",],   
-     pch=21, col=TREND_COL, bg="#909090", cex=1.5, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="")
+     pch=21, col=TREND_COL, bg="#909090", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="")
 
 
 coef(salvage_area.final.gls)
@@ -215,12 +216,12 @@ sse <- sum(residuals(salvage_area.Fed.gls)^2)
 ##########make figure with final model
 
 plot(lsalvage_area~year, data=salvage[salvage$owner=="Federal",],   
-     pch=21, col=TREND_COL, bg="#33a02c", cex=1.5, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="")
+     pch=21, col=TREND_COL, bg="#33a02c", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="")
 
 coef(salvage_area.Fed.gls)
 
 ###add first part -DOES THE BREAK YEARGETINLCUDED IN BOTH?
-points(c(1986,1997), c(coef(salvage_area.Fed.gls)[1],
+points(c(1986,1998), c(coef(salvage_area.Fed.gls)[1],
                        coef(salvage_area.Fed.gls)[1])
        , type="l", col="black", lwd=TREND_LWD,lty=TREND_LTY)
 
@@ -246,7 +247,7 @@ salvage_area.Priv.gls <- gls(lsalvage_area ~
 summary(salvage_area.Priv.gls)
 
 plot(lsalvage_area~year, data=salvage[salvage$owner=="Private",],  
-     pch=21, col=TREND_COL, bg="#1f78b4", cex=1.6, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="")
+     pch=21, col=TREND_COL, bg="#1f78b4", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="")
 
 ##create null model to calculate r squared 
 salvage_area.Priv.null.gls <- gls(lsalvage_area ~ 
@@ -260,11 +261,11 @@ sse <- sum(residuals(salvage_area.Priv.gls)^2)
 coef(salvage_area.Priv.gls)
 
 ###add first part 
-points(c(1986,1996), c(coef(salvage_area.Priv.gls)[1]+ 1986*coef(salvage_area.Priv.gls)[2],
+points(c(1986,1997), c(coef(salvage_area.Priv.gls)[1]+ 1986*coef(salvage_area.Priv.gls)[2],
                        1996*coef(salvage_area.Priv.gls)[2]+coef(salvage_area.Priv.gls)[1]) , type="l", lwd=TREND_LWD, col="black")
 
 ##add second part
-points(c(1997,2016), c(coef(salvage_area.Priv.gls)[1]+ 1997*coef(salvage_area.Priv.gls)[2] 
+points(c(1997,2017), c(coef(salvage_area.Priv.gls)[1]+ 1997*coef(salvage_area.Priv.gls)[2] 
                        + coef(salvage_area.Priv.gls)[3], 2016*coef(salvage_area.Priv.gls)[2]+coef(salvage_area.Priv.gls)[1] 
                        + coef(salvage_area.Priv.gls)[3]), type="l", lwd=TREND_LWD, col="black")
 
@@ -300,13 +301,13 @@ sse <- sum(residuals(salvage_rate.All.final.gls)^2)
 ########
 
 plot(salvage_rate~year, data=salvage[salvage$owner=="All",],   
-     pch=21, col=TREND_COL, bg="#909090", cex=1.6, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="", ylim=c(0,30))
+     pch=21, col=TREND_COL, bg="#909090", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="", ylim=c(0,30))
 
 
 coef(salvage_rate.All.final.gls)
 
 ###add first part -DOES THE BREAK YEARGETINLCUDED IN BOTH?
-points(c(1986,1995), c(coef(salvage_rate.All.final.gls)[1],
+points(c(1986,1996), c(coef(salvage_rate.All.final.gls)[1],
                        coef(salvage_rate.All.final.gls)[1])
        ,type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 
@@ -355,13 +356,13 @@ sse.ar1
 
 
 plot(salvage_rate~year, data=salvage[salvage$owner=="Federal",],  
-     pch=21, col=TREND_COL, bg="#33a02c", cex=1.6, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="", ylim=c(0,30))
+     pch=21, col=TREND_COL, bg="#33a02c", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="", ylim=c(0,30))
 
 coef(salvage_rate.Fed.gls)
 
 
 ###add first part -DOES THE BREAK YEARGETINLCUDED IN BOTH?
-points(c(1986,1995), c(coef(salvage_rate.Fed.gls)[1],
+points(c(1986,1996), c(coef(salvage_rate.Fed.gls)[1],
                        coef(salvage_rate.Fed.gls)[1])
        ,type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 
@@ -401,7 +402,7 @@ sse <- sum(residuals(salvage_area.Priv.gls)^2)
 
 
 plot(salvage_rate~year, data=salvage[salvage$owner=="Private",],   
-     pch=21, col=TREND_COL, bg="#1f78b4", cex=1.6, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="",  ylim=c(0,30))
+     pch=21, col=TREND_COL, bg="#1f78b4", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="",  ylim=c(0,30))
 
 
 coef(salvage_area.Priv.gls)
@@ -445,7 +446,7 @@ sse <- sum(residuals(p_salvage_area.All.gls)^2)
 
 #plot(area~year, data=salvage[salvage$owner=="All",], 
 plot(area~year, data=salvage[salvage$owner=="All",],   
-     pch=21, col=TREND_COL, bg="#909090", cex=1.6, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE,ylab="", xlab="", ylim=c(0,25))
+     pch=21, col=TREND_COL, bg="#909090", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE,ylab="", xlab="", ylim=c(0,25))
 
 coef(p_salvage_area.All.gls)
 
@@ -482,13 +483,13 @@ sse.ar1
 
 ##########make figure with final model
 plot(area~year, data=salvage[salvage$owner=="Federal",], 
-     pch=21, col=TREND_COL, bg="#33a02c", cex=1.6, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE,ylab="", xlab="", ylim=c(0,25))
+     pch=21, col=TREND_COL, bg="#33a02c", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE,ylab="", xlab="", ylim=c(0,25))
 
 coef(p_salvage_area.Fed.gls)
 
 
 ###add first part -DOES THE BREAK YEARGETINLCUDED IN BOTH?
-points(c(1986,1995), c(coef(p_salvage_area.Fed.gls)[1],
+points(c(1986,1996), c(coef(p_salvage_area.Fed.gls)[1],
                        coef(p_salvage_area.Fed.gls)[1])
        ,type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 
@@ -525,13 +526,13 @@ sse <- sum(residuals(p_salvage_area.Priv.gls)^2)
 ##########make figure with final model
 
 plot(area~year, data=salvage[salvage$owner=="Private",], 
-     pch=21, col=TREND_COL, bg="#1f78b4", cex=1.6, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="", ylim=c(0,25))
+     pch=21, col=TREND_COL, bg="#1f78b4", cex=TREND_CEX, cex.lab=1.5, cex.axis=1.5, cex.main=1.5, type=MARKER_TYPE, ylab="", xlab="", ylim=c(0,25))
 
 
 coef(p_salvage_area.Priv.gls)
 
 ###add first part -DOES THE BREAK YEARGETINLCUDED IN BOTH?
-points(c(1986,1996), c(coef(p_salvage_area.Priv.gls)[1],
+points(c(1986,1997), c(coef(p_salvage_area.Priv.gls)[1],
                        coef(p_salvage_area.Priv.gls)[1])
        , type="l", col="black", lwd=TREND_LWD, lty=TREND_LTY)
 

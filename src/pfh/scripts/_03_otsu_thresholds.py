@@ -27,7 +27,7 @@ if __name__ == "__main__":
     task = ee.batch.Export.table.toAsset(
         collection=thresholds,
         description="otsu_thresholds",
-        assetId=OTSU_THRESHOLDS + "_managed",
+        assetId=OTSU_THRESHOLDS,
     )
     task.start()
 

@@ -10,6 +10,13 @@ from pfh.scripts.config import (
 def generate_fire_maxdiff(fire: ee.Feature) -> ee.Image:
     """Generate a maximum spectral difference and timing composite for a single fire."""
     pairs = composites.get_landsat_composites(fire, mask_forest=True)
+
+    # Check if any start or end composites was created without valid input images
+    pair_imgs = ee.ImageCollection([
+        pair[img] for pair in pairs for img in ["start", "end"]
+    ])
+    missing_img = ee.Number(pair_imgs.aggregate_min("num_images")).eq(0)
+
     pairs = composites.match_pairs(
         pairs=pairs,
         method="sed",
@@ -18,7 +25,9 @@ def generate_fire_maxdiff(fire: ee.Feature) -> ee.Image:
         geometry=fire.geometry(),
     )
     maxdiff = composites.max_difference(pairs, timing_band="SWIR2")
-    return spectral.snic_cluster(maxdiff, cluster_bands=ee.List(["SWIR2", "Red"]))
+    clustered = spectral.snic_cluster(maxdiff, cluster_bands=ee.List(["SWIR2", "Red"]))
+
+    return ee.Algorithms.If(missing_img, None, clustered)
 
 
 def generate_maxdiffs(fires: ee.FeatureCollection) -> None:
@@ -32,7 +41,7 @@ def generate_maxdiffs(fires: ee.FeatureCollection) -> None:
         .sort()
         .getInfo()
     )
-    for year in fire_years[:1]:
+    for year in fire_years:
         start_date = ee.Date.fromYMD(year, 1, 1)
         end_date = start_date.advance(1, "year")
 
@@ -42,7 +51,9 @@ def generate_maxdiffs(fires: ee.FeatureCollection) -> None:
                 ee.Filter.lt("Ig_Date", end_date.millis()),
             )
         )
-        year_maxdiffs = ee.ImageCollection(year_fires.map(generate_fire_maxdiff))
+        year_maxdiffs = ee.ImageCollection(
+            year_fires.map(generate_fire_maxdiff, dropNulls=True)
+        )
 
         metadata = {
             "year": year,
@@ -52,7 +63,7 @@ def generate_maxdiffs(fires: ee.FeatureCollection) -> None:
         maxdiff = year_maxdiffs.mosaic().set(metadata)
 
         # Export to asset
-        asset_id = f"{MAXDIFF_COLLECTION}/{year}_v2"
+        asset_id = f"{MAXDIFF_COLLECTION}/{year}"
         print(f"Exporting {asset_id}...")
 
         task = ee.batch.Export.image.toAsset(
