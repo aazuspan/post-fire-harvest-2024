@@ -4,6 +4,7 @@ from pfh.scripts.config import (
     EE_PROJECT,
     HARVEST_COLLECTION,
     MAXDIFF_COLLECTION,
+    SEVERITY_COLLECTION,
 )
 
 
@@ -25,4 +26,4 @@ if __name__ == "__main__":
 
     create_imagecollection(MAXDIFF_COLLECTION)
     create_imagecollection(HARVEST_COLLECTION)
-    # create_imagecollection(SEVERITY_COLLECTION)
+    create_imagecollection(SEVERITY_COLLECTION)

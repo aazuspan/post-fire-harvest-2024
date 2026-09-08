@@ -5,3 +5,4 @@ __pycache__/
 .coverage
 dask-worker-space/
 .Rhistory
+uv.lock
