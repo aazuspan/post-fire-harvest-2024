@@ -2,6 +2,7 @@ import ee
 
 from pfh.composites import get_landsat_composites
 from pfh.scripts.config import (
+    EE_PROJECT,
     CANDIDATE_FIRE_COLLECTION,
     STUDY_AREA_COLLECTION,
     STUDY_FIRE_COLLECTION,
@@ -92,7 +93,7 @@ def get_fire_metadata(fire: ee.Feature) -> ee.Feature:
 
 
 if __name__ == "__main__":
-    ee.Initialize()
+    ee.Initialize(project=EE_PROJECT)
     mtbs = ee.FeatureCollection("USFS/GTAC/MTBS/burned_area_boundaries/v1")
     wdpa = ee.FeatureCollection("WCMC/WDPA/current/polygons")
     fee = ee.FeatureCollection("USGS/GAP/PAD-US/v20/fee")

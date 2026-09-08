@@ -1,5 +1,7 @@
 ASSET_DIRECTORY = "projects/salvage-2023/assets"
 
+# The Earth Engine project ID used for computations and exports
+EE_PROJECT = "ee-aazuspan"
 
 # Manually created assets
 STUDY_AREA_COLLECTION = f"{ASSET_DIRECTORY}/study_regions"

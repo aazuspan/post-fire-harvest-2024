@@ -1,6 +1,7 @@
 import ee
 
 from pfh.scripts.config import (
+    EE_PROJECT,
     HARVEST_COLLECTION,
     MAXDIFF_COLLECTION,
     OTSU_THRESHOLDS,
@@ -9,7 +10,7 @@ from pfh.scripts.config import (
 from pfh.spectral import classify_harvests
 
 if __name__ == "__main__":
-    ee.Initialize()
+    ee.Initialize(project=EE_PROJECT)
 
     thresholds = ee.FeatureCollection(OTSU_THRESHOLDS)
     swir2_threshold = (

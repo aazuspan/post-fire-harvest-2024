@@ -1,6 +1,7 @@
 import ee
 
 from pfh.scripts.config import (
+    EE_PROJECT,
     HARVEST_COLLECTION,
     MAXDIFF_COLLECTION,
     OWNER_CLASSES,
@@ -11,7 +12,7 @@ from pfh.scripts.config import (
 )
 from pfh.utils import calculate_patch_areas, get_fire_year, get_pixel_area
 
-ee.Initialize()
+ee.Initialize(project=EE_PROJECT)
 
 
 SEVERITY_CLASSES = ee.Dictionary({"Very low": 0, "Low": 1, "Moderate": 2, "High": 3})

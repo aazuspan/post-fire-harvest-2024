@@ -1,5 +1,6 @@
 import ee
+from pfh.scripts.config import EE_PROJECT
 
 
 def pytest_sessionstart(session):
-    ee.Initialize()
+    ee.Initialize(project=EE_PROJECT)

@@ -1,6 +1,7 @@
 import ee
 
 from pfh.scripts.config import (
+    EE_PROJECT,
     HARVEST_COLLECTION,
     MAXDIFF_COLLECTION,
 )
@@ -20,7 +21,7 @@ def create_imagecollection(collection_path) -> None:
 
 
 if __name__ == "__main__":
-    ee.Initialize()
+    ee.Initialize(project=EE_PROJECT)
 
     create_imagecollection(MAXDIFF_COLLECTION)
     create_imagecollection(HARVEST_COLLECTION)

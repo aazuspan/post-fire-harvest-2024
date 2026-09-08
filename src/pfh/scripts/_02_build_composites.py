@@ -2,6 +2,7 @@ import ee
 
 from pfh import composites, spectral
 from pfh.scripts.config import (
+    EE_PROJECT,
     MAXDIFF_COLLECTION,
     STUDY_FIRE_COLLECTION,
 )
@@ -80,7 +81,7 @@ def generate_maxdiffs(fires: ee.FeatureCollection) -> None:
 
 
 if __name__ == "__main__":
-    ee.Initialize()
+    ee.Initialize(project=EE_PROJECT)
     # Calculate maxdiff for all candidate fires with valid pixels
     fires = ee.FeatureCollection(STUDY_FIRE_COLLECTION).filter(
         ee.Filter.gt("percent_forest", 0)

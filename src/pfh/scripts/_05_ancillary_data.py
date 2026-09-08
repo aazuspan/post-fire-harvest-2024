@@ -2,6 +2,7 @@ import ee
 
 from pfh import composites, landsat
 from pfh.scripts.config import (
+    EE_PROJECT,
     MAXDIFF_COLLECTION,
     OWNER_CLASSES,
     OWNERSHIP_MAP,
@@ -195,7 +196,7 @@ def export_validation_plots() -> None:
 
 
 if __name__ == "__main__":
-    ee.Initialize()
+    ee.Initialize(project=EE_PROJECT)
 
     print("Exporting validation plots...")
     export_validation_plots()

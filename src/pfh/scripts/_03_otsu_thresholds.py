@@ -1,6 +1,7 @@
 import ee
 
 from pfh.scripts.config import (
+    EE_PROJECT,
     MAXDIFF_COLLECTION,
     OTSU_THRESHOLDS,
     STUDY_FIRE_COLLECTION,
@@ -8,7 +9,7 @@ from pfh.scripts.config import (
 from pfh.spectral import get_otsu_threshold
 
 if __name__ == "__main__":
-    ee.Initialize()
+    ee.Initialize(project=EE_PROJECT)
 
     study_area = ee.FeatureCollection(STUDY_FIRE_COLLECTION)
     maxdiff = ee.ImageCollection(MAXDIFF_COLLECTION).mosaic()
